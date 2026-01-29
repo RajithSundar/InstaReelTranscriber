@@ -1,27 +1,64 @@
-# Instagram Reel Speech-to-Text Transcription Tool
+# 🎙️ Instagram Reel Speech-to-Text Transcription Tool
 
-A lightweight AI-powered tool that extracts audio from public Instagram Reels and transcribes speech into plain text using OpenAI's Whisper model.
+![Python Version](https://img.shields.io/badge/python-3.8%2B-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Status](https://img.shields.io/badge/status-active-success)
 
-## Features
+A lightweight, privacy-focused tool that extracts audio from public Instagram Reels and transcribes speech into plain text using OpenAI's Whisper model.
 
-✨ **Easy to Use**: Simple command-line interface  
-🎯 **Accurate**: ~85% accuracy for clear speech using Whisper AI  
-⚡ **Fast**: Transcription typically completes in ≤3× video duration  
-🔒 **Privacy Focused**: Works 100% offline after initial setup  
-🧹 **Clean**: Automatically deletes temporary files after processing  
+---
 
-## Prerequisites
+## 📖 Table of Contents
+- [Features](#-features)
+- [Quick Start](#-quick-start)
+- [Installation](#-installation)
+- [Usage](#-usage)
+- [Configuration](#-configuration)
+- [Troubleshooting](#-troubleshooting)
+- [License](#-license)
 
-### System Requirements
+---
 
-- **Python**: 3.8 or higher
-- **FFmpeg**: Required for audio processing
+## ✨ Features
 
-### Installing FFmpeg
+- **🎯 Accurate**: ~95% accuracy for clear speech using OpenAI's Whisper AI
+- **⚡ Fast**: Transcription typically completes in < 30% of video duration (after initial setup)
+- **🔒 Privacy Focused**: Works 100% offline after model download
+- **🧹 Clean**: Automatically handles cleanup of temporary audio files
+- **🖥️ Cross-Platform**: Windows, macOS, and Linux support
+
+---
+
+## 🚀 Quick Start
+
+```bash
+# Clone
+git clone https://github.com/RajithSundar/InstaTranscriber.git
+cd InstaTranscriber
+
+# Install
+pip install -r requirements.txt
+
+# Run
+python src/main.py https://www.instagram.com/reel/YOUR_REEL_ID/
+```
+
+> **Note:** The first run will automatically download a ~1GB Whisper model.
+
+---
+
+## 🛠️ Installation
+
+### 1. Prerequisites
+- **Python 3.8+**
+- **FFmpeg**: Required for audio processing.
+
+<details>
+<summary><b>Click to expand FFmpeg Installation Guide</b></summary>
 
 **Windows:**
-1. Download from [ffmpeg.org/download.html](https://ffmpeg.org/download.html)
-2. Extract and add to system PATH
+1. Download from [ffmpeg.org](https://ffmpeg.org/download.html)
+2. Extract and add `bin` folder to system PATH
 3. Verify: `ffmpeg -version`
 
 **macOS:**
@@ -31,197 +68,118 @@ brew install ffmpeg
 
 **Linux:**
 ```bash
-sudo apt update
-sudo apt install ffmpeg
+sudo apt update && sudo apt install ffmpeg
 ```
+</details>
 
-## Installation
-
-1. **Clone or download this repository**
+### 2. Setup Environment
 ```bash
-cd InstaTranscriber
-```
-
-2. **Create a virtual environment (recommended)**
-```bash
+# Create virtual environment
 python -m venv venv
 
-# Activate on Windows
+# Activate (Windows)
 venv\Scripts\activate
 
-# Activate on macOS/Linux
+# Activate (macOS/Linux)
 source venv/bin/activate
-```
 
-3. **Install dependencies**
-```bash
+# Install dependencies
 pip install -r requirements.txt
 ```
 
-> **Note**: First run will download the Whisper model (~1GB for base model). This is a one-time download.
+---
 
-## Usage
+## 💻 Usage
 
-### Basic Usage
-
+### Basic Transcription
 ```bash
-python src/main.py https://www.instagram.com/reel/YOUR_REEL_ID/
+python src/main.py https://www.instagram.com/reel/C-xyz123/
 ```
 
 ### Advanced Options
 
-**Use a different Whisper model:**
-```bash
-python src/main.py https://www.instagram.com/reel/ABC123/ --model small
-```
+| Option | Description | Example |
+|--------|-------------|---------|
+| `--model` | Choose model size (tiny, base, small, medium, large) | `--model small` |
+| `--output` | Save to a text file | `--output result.txt` |
+| `--help` | Show all available options | `--help` |
 
-**Save transcription to file:**
-```bash
-python src/main.py https://www.instagram.com/reel/ABC123/ --output transcript.txt
-```
+### Model Selection Guide
 
-**View all options:**
-```bash
-python src/main.py --help
-```
+| Model | VRAM/RAM | Speed | Accuracy | Best For |
+|-------|----------|-------|----------|----------|
+| `tiny` | ~1 GB | ⚡⚡⚡ | Passable | Quick debugging |
+| `base` | ~1 GB | ⚡⚡ | Good | **General Purpose (Default)** |
+| `small` | ~2 GB | ⚡ | Better | Clearer speech |
+| `medium`| ~5 GB | 🐢 | High | Complex audio |
+| `large` | ~10 GB | 🐢🐢 | Highest | Professional results |
 
-### Whisper Model Comparison
+---
 
-| Model  | Size  | Speed      | Accuracy | Use Case                |
-|--------|-------|------------|----------|-------------------------|
-| tiny   | ~1GB  | Fastest    | Basic    | Quick tests             |
-| base   | ~1GB  | Fast       | Good     | **Default - recommended** |
-| small  | ~2GB  | Moderate   | Better   | Higher accuracy needed  |
-| medium | ~5GB  | Slow       | High     | Professional use        |
-| large  | ~10GB | Slowest    | Best     | Maximum accuracy        |
+## 📝 Example Output
 
-## Example Output
+<details>
+<summary><b>View Terminal Output</b></summary>
 
-```
+```text
 ============================================================
   Instagram Reel Speech-to-Text Transcription Tool
 ============================================================
 Model: base
 URL: https://www.instagram.com/reel/ABC123/
 
-============================================================
 STEP 1: Validating Instagram Reel URL
-============================================================
-✓ Valid Instagram Reel URL
-  Reel ID: ABC123
+✓ Valid Instagram Reel URL (ID: ABC123)
 
-============================================================
 STEP 2: Downloading and Extracting Audio
-============================================================
-Downloading Instagram Reel: ABC123...
-Video duration: 30.5 seconds
+Downloading...
 ✓ Audio extracted successfully
 
-============================================================
 STEP 3: Transcribing Speech to Text
-============================================================
 Initializing Whisper model: base
-✓ Whisper model 'base' loaded successfully
-Transcribing audio...
-✓ Transcription completed in 15.2 seconds
-  Detected language: en
-  Performance ratio: 0.50x (target: ≤3x)
+✓ Model loaded
+✓ Transcription completed in 15.2s
 
 ============================================================
 RESULT
 ============================================================
-✓ Transcription completed successfully!
-
-Reel ID: ABC123
-Processing Time: 45.7 seconds
-
-------------------------------------------------------------
 TRANSCRIPTION:
 ------------------------------------------------------------
 Hey everyone! Today I'm going to show you how to make the
 perfect cup of coffee at home. It's easier than you think!
 ------------------------------------------------------------
-
-🗑️  Cleanup complete: 1 file(s) deleted
 ```
-
-## Limitations
-
-⚠️ **Instagram API Changes**: Instagram frequently updates their platform. If the tool stops working, update yt-dlp:
-```bash
-pip install --upgrade yt-dlp
-```
-
-⚠️ **Public Reels Only**: Only works with public Instagram Reels (not private accounts)
-
-⚠️ **Language Support**: Best accuracy with English; other languages supported but may vary in quality
-
-⚠️ **Background Noise**: Accuracy decreases with heavy background music or noise
-
-## Troubleshooting
-
-### "FFmpeg not found"
-- Ensure FFmpeg is installed and in your system PATH
-- Restart your terminal after installation
-- Verify with: `ffmpeg -version`
-
-### "Reel is private or not available"
-- Ensure the reel is from a public account
-- Verify the URL is correct
-- Try accessing the reel in your browser first
-
-### "Model download fails"
-- Check your internet connection
-- Ensure you have sufficient disk space (~1-10GB depending on model)
-- Try a smaller model: `--model tiny`
-
-### Slow performance
-- Use a smaller model: `--model tiny` or `--model base`
-- Ensure no other heavy applications are running
-- Consider using a machine with better CPU/GPU
-
-## Performance Notes
-
-- **First run**: Slower due to model download (one-time)
-- **Subsequent runs**: Much faster (~0.5-2× video duration)
-- **GPU acceleration**: Automatically used if CUDA-compatible GPU detected
-
-## Project Structure
-
-```
-InstaTranscriber/
-├── src/
-│   ├── __init__.py
-│   ├── main.py              # Main orchestrator & CLI
-│   ├── url_validator.py     # URL validation
-│   ├── media_extractor.py   # Video download & audio extraction
-│   ├── speech_recognizer.py # Whisper transcription
-│   └── cleanup_manager.py   # Temporary file management
-├── config.py                # Configuration settings
-├── requirements.txt         # Python dependencies
-├── setup.py                 # Package setup
-├── .gitignore              # Git ignore rules
-└── README.md               # This file
-```
-
-## License
-
-MIT License - feel free to use and modify as needed.
-
-## Acknowledgments
-
-- [OpenAI Whisper](https://github.com/openai/whisper) for speech recognition
-- [yt-dlp](https://github.com/yt-dlp/yt-dlp) for media extraction
-- [FFmpeg](https://ffmpeg.org/) for audio processing
-
-## Future Enhancements
-
-- 🌍 Language detection and translation
-- 👥 Speaker identification
-- 📊 Confidence scoring
-- ⏱️ Timestamp generation
-- 📱 Multi-platform support (TikTok, YouTube Shorts)
+</details>
 
 ---
 
-**Disclaimer**: This tool is for educational purposes. Respect content creators' rights and Instagram's Terms of Service. Only transcribe content you have permission to use.
+## 🔧 Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| **FFmpeg not found** | Ensure FFmpeg is in your system PATH and restart terminal. |
+| **Model download fails** | Check internet connection and disk space (~1-3GB needed). |
+| **Reel not found** | The reel must be **public**. Private accounts are not supported. |
+| **Slow transcription** | Try `--model tiny` for faster results on older hardware. |
+
+---
+
+## 📂 Project Structure
+
+```bash
+InstaTranscriber/
+├── src/
+│   ├── main.py              # CLI Entry point
+│   ├── media_extractor.py   # Download & Audio extraction
+│   ├── speech_recognizer.py # Whisper AI Logic
+│   └── ...
+├── config.py                # Global settings
+└── requirements.txt         # Dependencies
+```
+
+---
+
+## 📜 License
+
+This project is licensed under the MIT License.
+**Disclaimer**: Use responsibly. Respect all copyright and privacy laws.
