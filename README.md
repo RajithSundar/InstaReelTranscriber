@@ -37,14 +37,12 @@ A lightweight, privacy-focused tool that extracts audio from public Instagram Re
 git clone https://github.com/RajithSundar/InstaTranscriber.git
 cd InstaTranscriber
 
-# Install
-pip install -r requirements.txt
+# Setup (Installs dependencies & downloads model)
+setup_and_download.bat
 
 # Run
-python src/main.py https://www.instagram.com/reel/YOUR_REEL_ID/
+venv\Scripts\python src/main.py https://www.instagram.com/reel/YOUR_REEL_ID/
 ```
-
-> **Note:** The first run will automatically download a ~1GB Whisper model.
 
 ---
 
@@ -54,7 +52,7 @@ InstaTranscriber now includes a modern web interface.
 
 ### 1. Start the Backend API
 ```bash
-uvicorn src.api:app --reload
+venv\Scripts\uvicorn src.api:app --reload
 ```
 
 ### 2. Start the Frontend
