@@ -1,0 +1,17 @@
+# Instagram Reel Speech-to-Text Transcription Tool - Dependencies
+
+# Media Extraction
+yt-dlp>=2024.1.0
+
+# Speech Recognition
+openai-whisper>=20231117
+
+# URL Validation and HTTP Handling
+validators>=0.22.0
+requests>=2.31.0
+
+# Audio Processing (handled by FFmpeg - system dependency)
+# Install FFmpeg separately: https://ffmpeg.org/download.html
+
+# Optional: Progress Bar
+tqdm>=4.66.0
