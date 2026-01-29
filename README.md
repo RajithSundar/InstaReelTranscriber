@@ -26,6 +26,7 @@ A lightweight, privacy-focused tool that extracts audio from public Instagram Re
 - **🔒 Privacy Focused**: Works 100% offline after model download
 - **🧹 Clean**: Automatically handles cleanup of temporary audio files
 - **🖥️ Cross-Platform**: Windows, macOS, and Linux support
+- **🕸️ Web Interface**: Beautiful, modern web UI included
 
 ---
 
@@ -44,6 +45,27 @@ python src/main.py https://www.instagram.com/reel/YOUR_REEL_ID/
 ```
 
 > **Note:** The first run will automatically download a ~1GB Whisper model.
+
+---
+
+## 🕸️ Web Interface (New!)
+
+InstaTranscriber now includes a modern web interface.
+
+### 1. Start the Backend API
+```bash
+uvicorn src.api:app --reload
+```
+
+### 2. Start the Frontend
+In a new terminal:
+```bash
+cd frontend
+npm run dev
+```
+
+### 3. Open in Browser
+Visit [http://localhost:3000](http://localhost:3000) to use the tool.
 
 ---
 
