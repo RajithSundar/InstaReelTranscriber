@@ -37,6 +37,10 @@ setup(
         "validators>=0.22.0",
         "requests>=2.31.0",
         "tqdm>=4.66.0",
+        "fastapi>=0.100.0",
+        "uvicorn>=0.23.0",
+        "pydantic>=2.0.0",
+        "python-multipart>=0.0.6",
     ],
     entry_points={
         'console_scripts': [
