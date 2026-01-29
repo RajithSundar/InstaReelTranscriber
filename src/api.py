@@ -10,15 +10,23 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from src.main import InstaTranscriber
 from fastapi.middleware.cors import CORSMiddleware
+import config
 
 app = FastAPI(title="InstaReelTranscriber API")
 
-# Configure CORS for frontend
+# Configure CORS for frontend - allow common localhost variations
+origins = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://localhost:3001",
+    config.CORS_ORIGIN,
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # Frontend URL
+    allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["*"],
 )
 

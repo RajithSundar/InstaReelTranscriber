@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Loader2, ExternalLink, Copy, Check, FileText } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 export default function Home() {
   const [url, setUrl] = useState("");
@@ -14,6 +16,22 @@ export default function Home() {
   } | null>(null);
   const [error, setError] = useState("");
   const [copied, setCopied] = useState(false);
+  const [isBackendOnline, setIsBackendOnline] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const checkHealth = async () => {
+      try {
+        const response = await fetch(`${API_URL}/health`, { method: "GET" });
+        setIsBackendOnline(response.ok);
+      } catch {
+        setIsBackendOnline(false);
+      }
+    };
+
+    checkHealth();
+    const interval = setInterval(checkHealth, 10000);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,7 +49,7 @@ export default function Home() {
     }
 
     try {
-      const response = await fetch("http://localhost:8000/api/transcribe", {
+      const response = await fetch(`${API_URL}/api/transcribe`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ reel_url: url }),
@@ -78,12 +96,29 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-12"
         >
-          <div className="inline-flex items-center gap-2 mb-4 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-purple-300">
+          <div className={`inline-flex items-center gap-2 mb-4 px-3 py-1 rounded-full border text-xs font-medium ${isBackendOnline === null
+              ? "bg-white/5 border-white/10 text-gray-400"
+              : isBackendOnline
+                ? "bg-green-500/10 border-green-500/20 text-green-300"
+                : "bg-red-500/10 border-red-500/20 text-red-300"
+            }`}>
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
+              {isBackendOnline !== false && (
+                <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${isBackendOnline === null ? "bg-gray-400" : "bg-green-400"
+                  }`}></span>
+              )}
+              <span className={`relative inline-flex rounded-full h-2 w-2 ${isBackendOnline === null
+                  ? "bg-gray-500"
+                  : isBackendOnline
+                    ? "bg-green-500"
+                    : "bg-red-500"
+                }`}></span>
             </span>
-            Online & Ready
+            {isBackendOnline === null
+              ? "Connecting..."
+              : isBackendOnline
+                ? "Backend Connected"
+                : "Backend Offline"}
           </div>
           <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-4 bg-gradient-to-br from-white via-white to-gray-500 bg-clip-text text-transparent">
             InstaTranscriber

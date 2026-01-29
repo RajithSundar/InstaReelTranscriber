@@ -1,0 +1,57 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+venv/
+env/
+.venv/
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Node
+frontend/node_modules
+frontend/.next
+frontend/.turbo
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary files
+temp_downloads/
+temp_audio/
+temp_video/
+*.mp3
+*.wav
+*.mp4
+*.webm
+*.log
+
+# Environment files (but we need .env.example)
+.env
+.env.local
+.env.*.local
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Documentation
+*.md
+!README.md
+
+# Tests
+.pytest_cache/
+.coverage
+htmlcov/

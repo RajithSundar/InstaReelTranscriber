@@ -32,38 +32,54 @@ A lightweight, privacy-focused tool that extracts audio from public Instagram Re
 
 ## 🚀 Quick Start
 
-```bash
-# Clone
+### One-Click Setup
+
+**Windows:**
+```batch
 git clone https://github.com/RajithSundar/InstaTranscriber.git
 cd InstaTranscriber
-
-# Setup (Installs dependencies & downloads model)
 setup_and_download.bat
-
-# Run
-venv\Scripts\python src/main.py https://www.instagram.com/reel/YOUR_REEL_ID/
+start.bat
 ```
+
+**macOS / Linux:**
+```bash
+git clone https://github.com/RajithSundar/InstaTranscriber.git
+cd InstaTranscriber
+chmod +x setup.sh start.sh
+./setup.sh
+./start.sh
+```
+
+**Docker:**
+```bash
+git clone https://github.com/RajithSundar/InstaTranscriber.git
+cd InstaTranscriber
+docker-compose up
+```
+
+Then open **http://localhost:3000** in your browser! 🎉
+
+> For detailed deployment options, see [DEPLOYMENT.md](DEPLOYMENT.md)
 
 ---
 
-## 🕸️ Web Interface (New!)
+## 🕸️ Web Interface
 
-InstaTranscriber now includes a modern web interface.
+The modern web UI starts automatically with `start.bat` / `start.sh`.
 
-### 1. Start the Backend API
+**Manual Start (if needed):**
+
 ```bash
-venv\Scripts\uvicorn src.api:app --reload
+# Terminal 1: Backend
+venv\Scripts\uvicorn src.api:app --reload   # Windows
+# or: source venv/bin/activate && uvicorn src.api:app --reload  # Unix
+
+# Terminal 2: Frontend
+cd frontend && npm run dev
 ```
 
-### 2. Start the Frontend
-In a new terminal:
-```bash
-cd frontend
-npm run dev
-```
-
-### 3. Open in Browser
-Visit [http://localhost:3000](http://localhost:3000) to use the tool.
+Visit [http://localhost:3000](http://localhost:3000)
 
 ---
 

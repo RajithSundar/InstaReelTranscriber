@@ -26,6 +26,11 @@ env/
 ENV/
 .venv
 
+# Environment files (keep secrets out of repo)
+.env
+.env.local
+.env.*.local
+
 # IDE
 .vscode/
 .idea/
