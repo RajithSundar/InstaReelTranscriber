@@ -1,4 +1,4 @@
-# 🎙️ Instagram Reel Speech-to-Text Transcription Tool
+# Instagram Reel Speech-to-Text Transcription Tool
 
 ![Python Version](https://img.shields.io/badge/python-3.8%2B-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
@@ -8,7 +8,7 @@ A lightweight, privacy-focused tool that extracts audio from public Instagram Re
 
 ---
 
-## 📖 Table of Contents
+## Table of Contents
 - [Features](#-features)
 - [Quick Start](#-quick-start)
 - [Installation](#-installation)
@@ -19,18 +19,18 @@ A lightweight, privacy-focused tool that extracts audio from public Instagram Re
 
 ---
 
-## ✨ Features
+## Features
 
-- **🎯 Accurate**: ~95% accuracy for clear speech using OpenAI's Whisper AI
-- **⚡ Fast**: Transcription typically completes in < 30% of video duration (after initial setup)
-- **🔒 Privacy Focused**: Works 100% offline after model download
-- **🧹 Clean**: Automatically handles cleanup of temporary audio files
-- **🖥️ Cross-Platform**: Windows, macOS, and Linux support
-- **🕸️ Web Interface**: Beautiful, modern web UI included
+- Accurate: ~95% accuracy for clear speech using OpenAI's Whisper AI  
+- Fast: Transcription typically completes in < 30% of video duration (after initial setup)  
+- Privacy Focused: Works 100% offline after model download  
+- Clean: Automatically handles cleanup of temporary audio files  
+- Cross-Platform: Windows, macOS, and Linux support  
+- Web Interface: Modern web UI included  
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### One-Click Setup
 
@@ -58,15 +58,15 @@ cd InstaTranscriber
 docker-compose up
 ```
 
-Then open **http://localhost:3000** in your browser! 🎉
+Then open **http://localhost:3000** in your browser.
 
 > For detailed deployment options, see [DEPLOYMENT.md](DEPLOYMENT.md)
 
 ---
 
-## 🕸️ Web Interface
+## Web Interface
 
-The modern web UI starts automatically with `start.bat` / `start.sh`.
+The web UI starts automatically with `start.bat` / `start.sh`.
 
 **Manual Start (if needed):**
 
@@ -79,23 +79,23 @@ venv\Scripts\uvicorn src.api:app --reload   # Windows
 cd frontend && npm run dev
 ```
 
-Visit [http://localhost:3000](http://localhost:3000)
+Visit http://localhost:3000
 
 ---
 
-## 🛠️ Installation
+## Installation
 
 ### 1. Prerequisites
-- **Python 3.8+**
-- **FFmpeg**: Required for audio processing.
+- Python 3.8+  
+- FFmpeg (required for audio processing)
 
 <details>
 <summary><b>Click to expand FFmpeg Installation Guide</b></summary>
 
 **Windows:**
-1. Download from [ffmpeg.org](https://ffmpeg.org/download.html)
-2. Extract and add `bin` folder to system PATH
-3. Verify: `ffmpeg -version`
+1. Download from https://ffmpeg.org/download.html  
+2. Extract and add `bin` folder to system PATH  
+3. Verify: `ffmpeg -version`  
 
 **macOS:**
 ```bash
@@ -125,7 +125,7 @@ pip install -r requirements.txt
 
 ---
 
-## 💻 Usage
+## Usage
 
 ### Basic Transcription
 ```bash
@@ -144,15 +144,15 @@ python src/main.py https://www.instagram.com/reel/C-xyz123/
 
 | Model | VRAM/RAM | Speed | Accuracy | Best For |
 |-------|----------|-------|----------|----------|
-| `tiny` | ~1 GB | ⚡⚡⚡ | Passable | Quick debugging |
-| `base` | ~1 GB | ⚡⚡ | Good | **General Purpose (Default)** |
-| `small` | ~2 GB | ⚡ | Better | Clearer speech |
-| `medium`| ~5 GB | 🐢 | High | Complex audio |
-| `large` | ~10 GB | 🐢🐢 | Highest | Professional results |
+| `tiny` | ~1 GB | Very Fast | Basic | Quick debugging |
+| `base` | ~1 GB | Fast | Good | General purpose (default) |
+| `small` | ~2 GB | Moderate | Better | Clearer speech |
+| `medium`| ~5 GB | Slow | High | Complex audio |
+| `large` | ~10 GB | Very Slow | Highest | Professional results |
 
 ---
 
-## 📝 Example Output
+## Example Output
 
 <details>
 <summary><b>View Terminal Output</b></summary>
@@ -189,18 +189,18 @@ perfect cup of coffee at home. It's easier than you think!
 
 ---
 
-## 🔧 Troubleshooting
+## Troubleshooting
 
 | Issue | Solution |
 |-------|----------|
-| **FFmpeg not found** | Ensure FFmpeg is in your system PATH and restart terminal. |
-| **Model download fails** | Check internet connection and disk space (~1-3GB needed). |
-| **Reel not found** | The reel must be **public**. Private accounts are not supported. |
-| **Slow transcription** | Try `--model tiny` for faster results on older hardware. |
+| FFmpeg not found | Ensure FFmpeg is in your system PATH and restart terminal |
+| Model download fails | Check internet connection and disk space (~1–3GB needed) |
+| Reel not found | The reel must be public; private accounts are not supported |
+| Slow transcription | Try `--model tiny` for faster results on older hardware |
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```bash
 InstaTranscriber/
@@ -215,7 +215,7 @@ InstaTranscriber/
 
 ---
 
-## 📜 License
+## License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License.  
 **Disclaimer**: Use responsibly. Respect all copyright and privacy laws.
